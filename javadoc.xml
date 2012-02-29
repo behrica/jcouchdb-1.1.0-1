@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="lib/test/junit.jar:lib/compile/commons-io.jar:lib/compile/spring-beans-2.5.4.jar:lib/compile/commons-logging.jar:lib/test/hamcrest-all.jar:lib/compile/spring-2.5.5.jar:lib/compile/commons-codec.jar:lib/test/jmock.jar:lib/compile/svenson-1.3.0.jar:lib/test/easymock.jar:lib/compile/commons-beanutils.jar:lib/compile/commons-httpclient.jar:lib/compile/log4j.jar" destdir="doc" doctitle="jcouchdb javadoc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="org.jcouchdb.db,org.jcouchdb.document,org.jcouchdb.spring" source="1.5" sourcefiles="src/org/jcouchdb/util/CouchDBUpdater.java,src/org/jcouchdb/exception/NotFoundException.java,src/org/jcouchdb/util/ExceptionWrapper.java,src/org/jcouchdb/util/Util.java,src/org/jcouchdb/exception/CouchDBException.java,src/org/jcouchdb/exception/DataAccessException.java,test/org/jcouchdb/MapTestCase.java,src/org/jcouchdb/exception/UpdateConflictException.java" sourcepath="src" splitindex="true" use="true" version="true" />
+    </target>
+</project>

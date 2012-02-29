@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="lib/compile/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/compile/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/compile/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/compile/httpclient-4.0.jar"/>
+	<classpathentry kind="lib" path="lib/compile/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/compile/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/test/easymock-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/test/hamcrest-all-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/hamcrest-core-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/hamcrest-library-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="lib/compile/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/compile/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/compile/svenson-1.3.8.jar"/>
+	<classpathentry kind="lib" path="lib/test/jcl-over-slf4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/test/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

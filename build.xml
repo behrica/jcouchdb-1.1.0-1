@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     28.05.2008 09:12:15                                                        
+
+     jcouchdb    
+     couchdb driver offering typed JSON conversion
+                   
+     shelmberger                                                                
+     ====================================================================== -->
+<project name="jcouchdb" default="dist">
+
+	<property file="build.properties" />
+
+	<property name="project.sources" location="src" />
+	<property name="project.test.sources" location="test" />
+	<property name="project.build" location="bin" />
+	<property name="project.classes" location="${project.build}" />
+	<property name="project.libs" location="lib" />
+	<property name="project.javadoc" location="jcouchdb-javadoc" />
+
+	<property name="project.reports" location="reports" />
+
+	<description>
+            couchdb driver offering typed JSON conversion
+    </description>
+
+	<target name="clean">
+		<delete dir="${project.build}" />
+	</target>
+
+	<target name="mrproper" depends="clean">
+		<delete>
+			<fileset dir="${project.libs}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="init">
+		<mkdir dir="${project.classes}" />
+
+		<path id="compile.path">
+			<fileset dir="${project.libs}/compile">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+		<path id="test.path">
+			<fileset dir="${project.libs}/test">
+				<include name="*.jar" />
+			</fileset>
+			<path refid="compile.path" />
+			<path location="${project.classes}" />
+		</path>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${project.sources}" destdir="${project.classes}" 
+			source="1.5" 
+			target="1.5" 
+			debug="true" 
+			optimize="true" classpathref="compile.path" />
+
+		<copy todir="${project.classes}">
+			<fileset dir="${project.sources}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.xsd" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="dist" depends="compile,javadoc" description="Create distribution files">
+		<jar destfile="${project.build}/${ant.project.name}-${project.version}.jar">
+			<metainf dir="${basedir}/res" includes="**/*"/>
+			<fileset dir="${project.classes}" includes="**/*" excludes="log4j.properties,**/*.jar" />
+		</jar>
+
+		<zip destfile="${project.build}/${ant.project.name}-${project.version}-src.zip">
+			<zipfileset prefix="${ant.project.name}-${project.version}/" dir="${basedir}">
+				<include name="**/*"/>
+				<exclude name="bin/org/**/*"/>
+				<exclude name="bin/log4j.properties"/>
+		                <exclude name="target/**/*"/>
+		                <exclude name="*.sh"/>
+				<exclude name="reports/**/*"/>
+			</zipfileset>
+		</zip>
+<!--
+        <zip destfile="${project.build}/${ant.project.name}-${project.version}-src-nodep.zip">
+            <zipfileset prefix="${ant.project.name}-${project.version}/" dir="${basedir}">
+                <include name="**/*"/>
+                <exclude name="bin/**/*"/>
+                <exclude name="target/**/*"/>
+                <exclude name="synch*.sh"/>
+            	<exclude name="lib/**/*"/>
+				<exclude name="reports/**/*"/>
+            </zipfileset>
+        </zip>
+-->
+	</target>
+
+	<target name="test" depends="clean,compile" description="run unit tests">
+
+		<mkdir dir="${project.reports}" />
+
+		<javac srcdir="${project.test.sources}" destdir="${project.classes}" source="1.5" target="1.5" debug="true" optimize="true" classpathref="test.path" />
+
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath refid="test.path" />
+
+			<formatter type="plain" />
+
+			<batchtest fork="yes" todir="${project.reports}">
+				<fileset dir="${project.test.sources}">
+					<include name="**/*TestCase.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="javadoc" depends="init">
+		
+		<mkdir dir="${project.javadoc}"/>		
+
+		<delete includeemptydirs="true">
+			<fileset dir="${project.javadoc}" includes="**/*"/>
+		</delete>
+	
+		<mkdir dir="${project.javadoc}"/>		
+
+		<javadoc 
+		  	packagenames="org.jcouchdb.*"
+			sourcepath="src"
+  			defaultexcludes="yes"
+			destdir="${project.javadoc}"
+ 			author="true"
+  			version="true"
+  			use="true"
+  			windowtitle="jcouchdb documentation"
+  			classpathref="compile.path" />
+	</target>
+	
+</project>

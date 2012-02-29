@@ -1,0 +1,68 @@
+jcouchdb JSON library change log:
+=================================
+
+Changes from 0.11.0-1 to 1.0.1:
+ * meant to run against the new CouchDB 1.0.1
+ * add https option for ServerImpl
+ * bugfixes
+  
+Changes from 0.10.0-3 to 0.11.0-1:
+ * removed old stats API call
+ * support for new CouchDB 0.11 feature linked documents via @JSONReference and ResultAssembler
+
+Changes from 0.10.0-2 to 0.10.0-3:
+
+ * Fix encoding inconsistencies 
+ * Use DocumentHelper for bulkDeleteDocuments, change signature to List<? extends Object>
+ * Properly escape spaces and other characters in URLs.
+
+Changes from 0.10.0-1 to 0.10.0-2:
+ 
+ * added support for _uuids and replication
+ * support use cases with app global JSON config. See Hood Beta 2 for details.
+ * Fixed serious bug regarding JSONParser runs influencing each others JSON config in some situations.  
+
+Changes from 0.9.1-2 to 0.10.0-1:
+
+ * compatibility with couchdb 0.10.0: attachment revpos, new list function format
+ * add ResourceSync to sync folders on disk with document attachments, MediaTypeUtil to determine media type by name.
+ * add Database.setJsonGenerator(JSON) to suport configuration of JSON output
+ * minor bugfixes
+
+Changes from 0.9.1-1 to 0.9.1-2:
+ * Added JarBasedCouchDBUpdater that can update views from a directory or jar in the classpath
+ * support for _show and _list
+ * support for _stats
+ * now uses slf4j as logging API
+ * switched to httpcomments http-client 4.0 from the old commons-httpclient-3.x
+ * now available via Maven 
+ * bugfix: added DocumentValidationException to access reason of validation errors.
+ * bugfix: don't escape startkey_docid, endkey_docid anymore
+ * support for all_or_nothing bulk creation, support for bulk delete. Thanks to Daniel Trümper for submitting the patches
+ 
+Changes from 0.9.0-1 to 0.9.0-2:
+
+ * Streaming attachment handling
+ * uses svenson 1.3 for JSON streaming and improved memory footprint
+
+Changes from 0.7.2 to 0.9.0-1:
+
+ * Reflects all changes from couchdb 0.8.1 to 0.9.0
+ * CouchDB dumper and loader classes to dump a database with attachments (both inlined as base64 or as single file)  into a zip file and restore it from one
+ * NoResponseException is now thrown in cases couchdb does not send a HTTP response
+ * introduced org.jcouchdb.db.DatabaseEventHandler as cross-cutting way to handle document changes
+ * accept objects as Options keys
+ * switched to svenson 1.2.8
+
+Changes from 0.7.1 to 0.7.2:
+
+ * switched to svenson 1.2.6 which fixes a major bug with trailing commas in the JSON output of pure BaseDocuments
+ * bugfix: Only update design documents in CouchDB Updater that have actually changed.
+
+Changes from 0.7 to 0.7.1:
+
+ * added Database.listDocumentsByUpdateSequence()
+ * added file based design document updating tool: org.jcouchdb.util.CouchDBUpdater
+ * added org.jcouchdb.spring.SpringCouchDBUpdater as spring wrapper for org.jcouchdb.util.CouchDBUpdater (spring is not included as dependency!)
+ * updated to svenson 1.2.4
+
